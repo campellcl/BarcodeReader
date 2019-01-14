@@ -7,6 +7,7 @@ __created__ = '1/14/2019'
 
 import os
 import sys
+import shutil
 from PIL import Image
 from pyzbar import pyzbar
 from pyzbar.pyzbar import ZBarSymbol
@@ -52,9 +53,6 @@ def main():
         os.mkdir(failed_img_dir)
 
     # Traverse the source image directory. The topmost folder is the parent or 'root' folder:
-    openable_images_failed_ocr = []
-    unopenable_images = []
-
     for dir_name, sub_dir_list, file_list in os.walk(source_img_dir):
         # Skip the parent directory:
         if dir_name == root_dir:
@@ -73,6 +71,9 @@ def main():
         for i, fname in enumerate(file_list):
             # Ensure that the image extension is in the list of programmer specified valid extension file types:
             if os.path.basename(fname).lower().split('.')[1] in VALID_EXTENSIONS:
+                # Ensure the image isn't already in the Renamed Images directory:
+                if os.path.isfile(os.path.join(renamed_img_dir, fname)):
+                    continue
                 print('\t[%d/%d] Running Optical Character Recognition (OCR) on image \'%s\':' % (i, num_files, fname))
                 # Attempt to open the image using PIL:
                 try:
@@ -84,18 +85,30 @@ def main():
                 except Exception as err:
                     print('\t\tERROR: Failed to open image \'%s\'. Proceeding without this image.' % fname)
                     unopenable_images.append(os.path.join(dir_name, fname))
+                    # Copy image to failed_image_dir:
+                    shutil.copy(os.path.join(dir_name, fname), os.path.join(failed_img_dir, fname))
                     continue
                 # The image has been opened successfully, now try running OCR on the barcode:
                 decoded_img = pyzbar.decode(img)
                 if decoded_img:
+                    # OCR worked
                     ocr_success_images.append(os.path.join(dir_name, fname))
                     num_ocr_success += 1
                     print('\t\t%s' % decoded_img)
+                    # Get the new image name from the barcode:
+                    new_img_name = decoded_img[0][0].decode()
+                    # Get the old image extension:
+                    source_img_ext = os.path.splitext(img.filename)[1]
+                    # Copy and rename the image:
+                    shutil.copy(src=os.path.join(dir_name, fname), dst=os.path.join(renamed_img_dir, new_img_name + source_img_ext))
                 else:
+                    # OCR failed
                     print('\t\tFailed to decode barcode.')
                     ocr_failure_images.append(os.path.join(dir_name, fname))
                     num_ocr_fails += 1
-                    openable_images_failed_ocr.append(os.path.join(dir_name, fname))
+                    # Copy image to failed_image_dir:
+                    shutil.copy(os.path.join(dir_name, fname), os.path.join(failed_img_dir, fname))
+
 
 if __name__ == '__main__':
     # Directories are relative to this script's location:

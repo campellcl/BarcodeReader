@@ -16,6 +16,7 @@ from pyzbar.pyzbar import ZBarSymbol
 # NOTE: Extensions are case insensitive, if 'jpg' is in this list then both: 'MyFile.jpg' and 'MyFile.JPG' will be valid
 VALID_EXTENSIONS = ['jpg', 'jpeg', 'png']
 
+
 def ensure_directory_is_readable_and_writeable(dir):
     """
     ensure_directory_is_readable_and_writeable: Ensures that the directory:
@@ -71,9 +72,6 @@ def main():
         for i, fname in enumerate(file_list):
             # Ensure that the image extension is in the list of programmer specified valid extension file types:
             if os.path.basename(fname).lower().split('.')[1] in VALID_EXTENSIONS:
-                # Ensure the image isn't already in the Renamed Images directory:
-                if os.path.isfile(os.path.join(renamed_img_dir, fname)):
-                    continue
                 print('\t[%d/%d] Running Optical Character Recognition (OCR) on image \'%s\':' % (i, num_files, fname))
                 # Attempt to open the image using PIL:
                 try:
@@ -120,10 +118,12 @@ if __name__ == '__main__':
     # Ensure that the user installed the script in a directory with read and write permissions:
     if ensure_directory_is_readable_and_writeable(root_dir):
         print('INFO: Ensured script install directory exists, is readable, and is writeable.')
+        if not os.path.isdir(source_img_dir):
+            os.mkdir(source_img_dir)
+            print('INFO: Created directory \'%s\' for you. Please place all mislabeled images in this folder, '
+                  'and run the script again.' % source_img_dir)
+            exit(0)
         main()
     else:
         print('Fatal Error: Terminating script...')
         sys.exit(-1)
-
-
-

@@ -12,8 +12,8 @@ import shutil
 from PIL import Image
 from pyzbar import pyzbar
 from pyzbar.pyzbar import ZBarSymbol
-import matplotlib.pyplot as plt
-import numpy as np
+# import matplotlib.pyplot as plt
+# import numpy as np
 
 # Valid image types that this program will attempt to read barcodes from
 # NOTE: Extensions are case insensitive, if 'jpg' is in this list then both: 'MyFile.jpg' and 'MyFile.JPG' will be valid

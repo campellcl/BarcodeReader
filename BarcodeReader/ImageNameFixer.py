@@ -162,15 +162,21 @@ def _ocr_and_rename_all_images_in_dir(mislabeled_img_dir, renamed_img_dir, faile
                     # Get the old image extension:
                     source_img_ext = os.path.splitext(img.filename)[1]
                     # Copy and rename the image:
-                    shutil.copy(src=os.path.join(dir_name, fname), dst=os.path.join(renamed_img_dir, new_img_name + source_img_ext))
+                    shutil.copy(
+                        src=os.path.join(dir_name, fname),
+                        dst=os.path.join(renamed_img_dir, new_img_name + source_img_ext)
+                    )
                 else:
                     # OCR failed
                     print('\t\tFailed to OCR and decode barcode.')
                     num_ocr_failures_in_dir += 1
                     ocr_failure_images.append(os.path.join(dir_name, fname))
         ocr_success_rate_in_dir = ((num_ocr_successes_in_dir * 100)/num_files_in_dir)
-        print('INFO: Directory OCR Stats: \n\tOCR Success Rate: %.2f%%\n\tNumber of renamed images: %d\n\tNumber of remaining mislabeled images: %d' % (ocr_success_rate_in_dir, num_ocr_successes_in_dir, num_ocr_failures_in_dir))
-    print('INFO: No more sub-directories identified. Global OCR and renaming finished. Dumping list of failed OCR images to: \'%s\'' % '/BarcodeReader/failed_images.txt')
+        print('INFO: Directory OCR Stats: \n\tOCR Success Rate: %.2f%%\n\tNumber of renamed images: %d\n\tNumber of '
+              'remaining mislabeled images: %d'
+              % (ocr_success_rate_in_dir, num_ocr_successes_in_dir, num_ocr_failures_in_dir))
+    print('INFO: No more sub-directories identified. Global OCR and renaming finished. Dumping list of failed OCR '
+          'images to: \'%s\'' % '/BarcodeReader/failed_images.txt')
     with open('failed_images.txt', 'w') as fp:
         for image_name in ocr_failure_images:
             fp.write(os.path.basename(image_name) + '\n')

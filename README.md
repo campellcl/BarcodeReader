@@ -136,7 +136,7 @@ renamed will be exported after the script finishes executing to the ```failed_im
 6. No continuous integration? No test cases? No code coverage statistics?
     1. Don't worry, I am suffering ample embarassment for publishing
     this software without including the above.
-    2. My employer emphisized speed on this implementation, not best Software Engineering practices.
+    2. I emphisized speed on this implementation, not best Software Engineering practices.
     3. I **do not** make a habit of publishing software without testing, code coverage, and preferribly continuous integration; this software is an exception to that rule.
 
 

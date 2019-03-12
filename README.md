@@ -133,6 +133,12 @@ renamed will be exported after the script finishes executing to the ```failed_im
     1. Of course. I foster and encourage collaboration and open source development.
 5. It's not working!
     1. That's not a question! But feel free to contact me (the maintainer of this software) at [campellcl@gmail.com](mailto:campellcl@gmail.com).
+6. No continuous integration? No test cases? No code coverage statistics?
+    1. Don't worry, I am suffering ample embarassment for publishing
+    this software without including the above.
+    2. My employer emphisized speed on this implementation, not best Software Engineering practices.
+    3. I **do not** make a habit of publishing software without testing, code coverage, and preferribly continuous integration; this software is an exception to that rule.
+
 
 ## Authorship Information:
 * This script was written by Christopher Campell, an M.S. Computer

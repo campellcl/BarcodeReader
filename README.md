@@ -1,4 +1,4 @@
-# BarcodeReader
+# BarcodeReader:
 A Python implementation of ZBar (utilizing *pyzbar*) for use in renaming
 herbarium specimen images with barcode content. This software is designed
 to rectify incorrectly named herbarium specimen images. The software
@@ -84,7 +84,7 @@ using the following
             ```
             * It is recommended that pip is used within the conda virtual environment to install Pillow.
 
-## Usage Guide
+## Usage Guide:
 
 1. Run the program located at ```BarcodeReader/BarcodeReader/ImageNameFixer.py``` by navigating to the script's location and executing:
     ```
@@ -115,7 +115,7 @@ to be read by the OCR software, the script will keep track of this. The
 original file names of images which were not able to be automatically
 renamed will be exported after the script finishes executing to the ```failed_images.txt``` file.
 
-## FAQ
+## FAQ:
 1. This software isn't very accurate, what gives? I thought you had experience in the field of computer vision!
     1. This software was developed for an employer who (in this particular instance) was not concerned with the accuracy of the software.
     2. I have not touched the source *pyzbar* OCR code, although there are a multitude of improvements I would love to implement should my employer so desire.
@@ -134,19 +134,19 @@ renamed will be exported after the script finishes executing to the ```failed_im
 5. It's not working!
     1. That's not a question! But feel free to contact me (the maintainer of this software) at [campellcl@gmail.com](mailto:campellcl@gmail.com).
 
-
-## Sources:
+## Authorship Information:
 * This script was written by Christopher Campell, an M.S. Computer
 Science student at Appalachian State University.
     * Inquries involving this software can be directed to
     [campellcl@gmail.com](mailto:campellcl@gmail.com)
+
+## Reference Materials:
 * This script makes heavy use of of the Python ported version of the
  open source [Zbar software](http://zbar.sourceforge.net/) (pyzbar)
  which is available on GitHub
  [here](https://github.com/NaturalHistoryMuseum/pyzbar).
 
 ## Licensing Information:
-
 * The Zbar software is licensed under the
 [GNU LGPL 2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html)
 for use in both commercial and open source projects.

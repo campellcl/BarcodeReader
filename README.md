@@ -84,34 +84,36 @@ using the following
             ```
             * It is recommended that pip is used within the conda virtual environment to install Pillow.
 
-7. Run the program located at ```BarcodeReader/BarcodeReader/ImageNameFixer.py``` by navigating to the script's location and executing:
+## Usage Guide
+
+1. Run the program located at ```BarcodeReader/BarcodeReader/ImageNameFixer.py``` by navigating to the script's location and executing:
     ```
     python ImageNameFixer.py
     ```
-8. You will be prompted (with the following text) to provide a path to the folder with mislabeled specimen images. Do so, then press the enter key. For example:
+2. You will be prompted (with the following text) to provide a path to the folder with mislabeled specimen images. Do so, then press the enter key. For example:
     ```
     Enter the file path to the folder containing mislabeled images here (you can always copy and paste it): C:\Users\chris\mislabeled_images
     ```
-9. You will be prompted (with the following text) to provide a path to the folder where the automatically renamed images should be copied over to. Do so, then press the enter key. For example:
+3. You will be prompted (with the following text) to provide a path to the folder where the automatically renamed images should be copied over to. Do so, then press the enter key. For example:
     ```
     Enter the file path to the folder where you wish automatically renamed images to be copied to: C:\Users\chris\renamed_images
     ```
     * If the folder you provide does not exist on your machine, you will be prompted to try again. If this occurs:
         1. Specify a folder that actually exists on the machine
         2. Create the folder manually (in Windows Explorer or Finder) and then try the same path again
-10. For your convience the program will offer to make copies of images
+4. For your convience the program will offer to make copies of images
 that could not be automatically renamed via OCR of the specimen barcodes.
 This can be useful for some workflows (for instance the folder can then
 be handed to a volunteer for manual re-labeling).
 If you wish for relabeled images to be copied over, enter 'y' or 'yes' and press the enter key; otherwise press 'n' or 'no' and the enter key.
 
-11. The script will now crawl the directory you originally provided and
+5. The script will now crawl the directory you originally provided and
 run OCR on all the images. If the barcode is able to be read by the OCR
 software, your orginal image will be copied over and renamed to the
 text encoded in the specimen image barcode. If the barcode is not able
 to be read by the OCR software, the script will keep track of this. The
 original file names of images which were not able to be automatically
-renamed will be exported after the script finishes executing to a 'failed_images.txt' file.
+renamed will be exported after the script finishes executing to the ```failed_images.txt``` file.
 
 ## FAQ
 1. This software isn't very accurate, what gives? I thought you had experience in the field of computer vision!
